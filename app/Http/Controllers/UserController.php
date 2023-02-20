@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 
@@ -46,6 +47,28 @@ class UserController extends Controller
     public function show_artists(User $user)
     {
         return response()->json(['message'=>'','data'=>$user->artists],200);
+    }
+
+    public function artistsFollowed(Request $request)
+    {
+        $id = Auth::id();
+        $usuario = User::findOrFail($id);
+        $artists = $usuario->follows;
+        return $artists;
+    }
+
+    public function update(Request $request, $id)
+    {
+        $user = User::findOrFail($id);
+        $user->update($request->all());
+        return response()->json(['message'=>'User updated','data'=>$user],200);
+    }
+
+    public function destroy(Request $request, $id)
+    {
+        $user = User::findOrFail($id);
+        $user->delete();
+        return response()->json(['message'=>'User Deleted','data'=>$user],200);
     }
 
 }

@@ -41,4 +41,18 @@ class SongController extends Controller
     {
         return response()->json(['message'=>'','data'=>$song->playlists],200);
     }
+
+    public function update(Request $request, $id)
+    {
+        $song = Song::findOrFail($id);
+        $song->update($request->all());
+        return response()->json(['message'=>'Song updated','data'=>$song],200);
+    }
+
+    public function destroy(Request $request, $id)
+    {
+        $song = Song::findOrFail($id);
+        $song->delete();
+        return response()->json(['message'=>'Song Deleted','data'=>$song],200);
+    }
 }

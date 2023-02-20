@@ -40,4 +40,18 @@ class PlaylistController extends Controller
     public function show_user(Playlist $playlist){
         return response()->json(['message'=>'','data'=>$playlist->user],200);
     }
+
+    public function update(Request $request, $id)
+    {
+        $playlist = Playlist::findOrFail($id);
+        $playlist->update($request->all());
+        return response()->json(['message'=>'Playlist updated','data'=>$playlist],200);
+    }
+
+    public function destroy(Request $request, $id)
+    {
+        $playlist = Playlist::findOrFail($id);
+        $playlist->delete();
+        return response()->json(['message'=>'Playlist Deleted','data'=>$playlist],200);
+    }
 }

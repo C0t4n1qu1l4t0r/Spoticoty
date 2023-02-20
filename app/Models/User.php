@@ -34,7 +34,7 @@ class User extends Authenticatable
     public function playlists(){
         return $this->hasMany('App\Models\Playlist');
     }
-    public function artists(){
+    public function follows(){
         return $this ->belongsToMany('App\Models\Artist','user_artist','user_id');
     }
 

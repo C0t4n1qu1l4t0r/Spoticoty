@@ -16,7 +16,8 @@ class Artist extends Model
     public function songs(){
         return $this->hasMany('App\Models\Song');
     }
-    public function users(){
-        return $this ->belongsToMany('App\Models\User','user_artist','artist_id');
+    public function follows()
+    {
+        return $this->belongsToMany('App\Models\User', 'user_artist', 'artist_id');
     }
 }

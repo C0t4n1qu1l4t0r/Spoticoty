@@ -37,4 +37,18 @@ class SettingController extends Controller
     {
         return response()->json(['message'=>'','data'=>$setting->user],200);
     }
+
+    public function update(Request $request, $id)
+    {
+        $setting = Setting::findOrFail($id);
+        $setting->update($request->all());
+        return response()->json(['message'=>'Settings updated','data'=>$setting],200);
+    }
+
+    public function destroy(Request $request, $id)
+    {
+        $setting = Setting::findOrFail($id);
+        $setting->delete();
+        return response()->json(['message'=>'Settings Deleted','data'=>$setting],200);
+    }
 }
