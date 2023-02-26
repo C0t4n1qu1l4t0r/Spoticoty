@@ -23,8 +23,9 @@ class ArtistController extends Controller
         return response()->json(['message'=>'Artist Created','data'=>$artist],200);
     }
 
-    public function show(Artist $artist){
-        return response()->json(['message'=>'','data'=>$artist],200);
+    function list(Request $request) {
+        $artist = Artist::jsonPaginate();
+        return $artist;
     }
 
     public function show_songs(Artist $artist){

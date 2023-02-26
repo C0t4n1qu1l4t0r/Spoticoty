@@ -28,9 +28,9 @@ class SettingController extends Controller
         return response()->json(['message'=>'Settings Asigned','data'=>$address],200);
     }
 
-    public function show(Setting $setting)
-    {
-        return response()->json(['message'=>'','data'=>$setting],200);
+    function list(Request $request) {
+        $setting = Setting::jsonPaginate();
+        return $setting;
     }
 
     public function show_user(Setting $setting)

@@ -29,9 +29,9 @@ class UserController extends Controller
         return response()->json(['message'=>'User Created','data'=>$user],200);
     }
 
-    public function show(User $user)
-    {
-        return response()->json(['message'=>'','data'=>$user],200);
+    function list(Request $request) {
+        $user = User::jsonPaginate();
+        return $user;
     }
 
     public function show_settings(User $user)

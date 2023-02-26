@@ -27,9 +27,9 @@ class SongController extends Controller
         return response()->json(['message' => 'Song Published', 'data' => $song], 200);
     }
 
-    public function show(Song $song)
-    {
-        return response()->json(['message'=>'','data'=>$song],200);
+    function list(Request $request) {
+        $song = Song::jsonPaginate();
+        return $song;
     }
 
     public function show_artist(Song $song)

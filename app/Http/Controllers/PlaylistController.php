@@ -28,10 +28,11 @@ class PlaylistController extends Controller
         return response()->json(['message' => 'Playlist Created', 'data' => $song], 200);
     }
 
-    public function show(Playlist $playlist)
-    {
-        return response()->json(['message'=>'','data'=>$playlist],200);
+    function list(Request $request) {
+        $playlist = Playlist::jsonPaginate();
+        return $playlist;
     }
+
 
     public function show_songs(Playlist $playlist){
         return response()->json(['message'=>'','data'=>$playlist->songs],200);
