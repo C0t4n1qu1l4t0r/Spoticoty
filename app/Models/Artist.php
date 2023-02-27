@@ -10,7 +10,8 @@ class Artist extends Model
     use HasFactory;
 
     protected $fillable = [
-        'name'
+        'name',
+        'followers'
     ];
 
     public function songs(){

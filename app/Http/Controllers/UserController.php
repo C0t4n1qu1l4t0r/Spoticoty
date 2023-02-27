@@ -49,14 +49,6 @@ class UserController extends Controller
         return response()->json(['message'=>'','data'=>$user->artists],200);
     }
 
-    public function artistsFollowed(Request $request)
-    {
-        $id = Auth::id();
-        $usuario = User::findOrFail($id);
-        $artists = $usuario->follows;
-        return $artists;
-    }
-
     public function update(Request $request, $id)
     {
         $user = User::findOrFail($id);

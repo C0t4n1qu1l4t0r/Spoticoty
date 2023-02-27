@@ -24,6 +24,7 @@ class ArtistController extends Controller
     }
 
     function list(Request $request) {
+
         $artist = Artist::jsonPaginate();
         return $artist;
     }
@@ -54,7 +55,7 @@ class ArtistController extends Controller
         } catch (\Throwable$th) {
             return response()->json(['message' => 'Ha habido un error en el proceso'], 500);
         }
-        return response()->json(['message' => 'Artist followed', 'peticion' => $artist], 201);
+        return response()->json(['message' => 'Artist followed', 'artist' => $artist], 201);
     }
 
     public function update(Request $request, $id)

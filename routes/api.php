@@ -35,7 +35,9 @@ Route::controller(AuthController::class)->group(function () {
 
 Route::controller(UserController::class)->group(function(){
     Route::post('register', 'register');
-    Route::get('user/{user}', 'show');
+    Route::get('users ', 'list');
+    Route::post('user/{user}/edit', 'update');
+    Route::get('user/{user}/delete', 'destroy');
     Route::get('user/{user}/setting', 'show_settings');
     Route::get('user/{user}/playlists', 'show_playlists');
     Route::get('user/{user}/artists', 'show_artists');
@@ -43,27 +45,35 @@ Route::controller(UserController::class)->group(function(){
 
 Route::controller(SettingController::class)->group(function(){
     Route::post('asign', 'asign');
-    Route::get('setting/{setting}','show');
+    Route::get('settings','list');
+    Route::post('setting/{setting}/edit', 'update');
+    Route::get('setting/{setting}/delete', 'destroy');
     Route::get('setting/{setting}/user', 'show_user');
 });
 
 Route::controller(SongController::class)->group(function(){
     Route::post('publish', 'publish');
-    Route::get('song/{song}', 'show');
+    Route::get('songs', 'list');
+    Route::post('song/{song}/edit', 'update');
+    Route::get('song/{song}/delete', 'destroy');
     Route::get('song/{song}/artist', 'show_artist');
     Route::get('song/{song}/playlists', 'show_playlists');
 });
 
 Route::controller(PlaylistController::class)->group(function(){
     Route::post('create', 'create');
-    Route::get('playlist/{playlist}', 'show');
+    Route::get('playlists', 'list');
+    Route::post('playlist/{playlist}/edit', 'update');
+    Route::get('playlist/{playlist}/delete', 'destroy');
     Route::get('playlist/{playlist}/songs', 'show_songs');
     Route::get('playlist/{playlist}/user', 'show_user');
 });
 
 Route::controller(ArtistController::class)->group(function(){
     Route::post('start', 'register');
-    Route::get('artist/{artist}', 'show');
+    Route::get('artists', 'list');
+    Route::post('artist/{artist}/edit', 'update');
+    Route::get('artist/{artist}/delete', 'destroy');
     Route::get('artist/{artist}/songs', 'show_songs');
     Route::get('artist/{artist}/users', 'show_users');
 });
